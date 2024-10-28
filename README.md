@@ -1,1 +1,1 @@
-# CSE151A_Group_Proejct
+# CSE151A_Group_Project

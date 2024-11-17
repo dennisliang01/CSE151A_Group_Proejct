@@ -23,9 +23,13 @@ Holiday, Functioning Day: The data is in Yes/No format. Since this is essentiall
 We encoded the date as the date of the year, which is slightly different than the continuos numbers we originally proposed. However date of the year turned out to be easier to encode and we assume that this will also generalize better. For the other features we sticked to our originally ideas for encoding. 
 Finally, we applied min-max-scaling.
 
+All preprocessing can be found in [1_preprocessing.ipynb](/1_preprocessing.ipynb).
+
 ## Train your first model 
 Because of simplicity our first choice was linear/polynomial regression. We tried up to degree 4. 
 After plotting our fitting graph, we notice that the training MSE decreases as the polynomial degree increases. However, the testing MSE decreases from degree 1 to degree 2 and increases from degree 2 onwards. After degree 2, our model shows signs of overfitting. Therefore, we believe a second degree polynomial model fits our dataset the best.
+
+Our first model can be found in [2_first_model.ipynb](/2_first_model.ipynb).
 
 ## Where does your model fit in the fitting graph? 
 The degree 1 model is underfitting as both train as well as test error are high. Degree seems to fit well with a test error higher than the train error but both in acceptable range. Degree 3 and especially degree 4 show overfitting with a very high test error, while achieving a low training error.
@@ -34,7 +38,7 @@ The degree 1 model is underfitting as both train as well as test error are high.
 ### Decision Trees 
 Next, we would like to try decision trees. Many of the features seem easy to split. E.g. for the rainfall a split on no rain vs rain or rain, little rain (amount of mm yet to be decided), heavy rain. Also hour could be split to divide the day into night vs day, or smaller differentiation. 
 
-# What is the conclusion of your 1st model? What can be done to possibly improve it? 
+## What is the conclusion of your 1st model? What can be done to possibly improve it? 
 For a first approach the results are not too bad. A degree of two provides us with solid results. 
 ### Feature Expansion
 Another approach would be feature expansion. 

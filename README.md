@@ -25,24 +25,56 @@ Finally, we applied min-max-scaling.
 
 All preprocessing can be found in [1_preprocessing.ipynb](/1_preprocessing.ipynb).
 
-## Train your first model 
+**Milestone 4 Update:** in accordance to the feedback we got on gradescope, we updated our scaling of the testing data and the scaling of our MSE. 
+
+# Milestone 3 & 4 
+
+## Methods 
+
+### Train your first model 
 Because of simplicity our first choice was linear/polynomial regression. We tried up to degree 4. 
 After plotting our fitting graph, we notice that the training MSE decreases as the polynomial degree increases. However, the testing MSE decreases from degree 1 to degree 2 and increases from degree 2 onwards. After degree 2, our model shows signs of overfitting. Therefore, we believe a second degree polynomial model fits our dataset the best.
 
 Our first model can be found in [2_first_model.ipynb](/2_first_model.ipynb).
 
-## Where does your model fit in the fitting graph? 
+### Train your second model 
+
+As proposed in the last submission we implemented decision trees. We first tried the default settings of the DecisionTreeRegressor from sklearn. As warned in the documentation we got an extremely complex model with 13347 nodes and a depth of 32 which overfits our model heavily. 
+Consequently, we limited the max_depth of our model and tired out parameters in the range from 1 to 20 for this. We saw that a depth of 12 provided us with significantly better results. However the MSEs were still noticeably high. Thus, we decided to utilize hyperparameter tuning by making use of the grid search approach. Grid search is a basic, but relatively costly as exponential way of trying out hyperparameters as it is testing every possible combination of the hyperparameter values. As we do not have computation power issues yet we decided it is sufficient for our implementation.  
+We adjusted the feature ranges until we had best results that were not at the boundary but in the middle of each interval. By that we ensured that there are no better values right outside of our interval. 
+
+Our second model can be found in [3_second_model.ipynb](/3_second_model.ipynb).
+
+
+## Conclusion 
+
+### First model
+[2_first_model.ipynb](/2_first_model.ipynb)
+
+#### Where does your first model fit in the fitting graph? 
 The degree 1 model is underfitting as both train as well as test error are high. Degree seems to fit well with a test error higher than the train error but both in acceptable range. Degree 3 and especially degree 4 show overfitting with a very high test error, while achieving a low training error.
 
-## What are the next models you are thinking of and why? 
-### Decision Trees 
+#### What are the next models you are thinking of and why? 
+##### Decision Trees 
 Next, we would like to try decision trees. Many of the features seem easy to split. E.g. for the rainfall a split on no rain vs rain or rain, little rain (amount of mm yet to be decided), heavy rain. Also hour could be split to divide the day into night vs day, or smaller differentiation. 
 
-## What is the conclusion of your 1st model? What can be done to possibly improve it? 
+#### What is the conclusion of your 1st model? What can be done to possibly improve it? 
 For a first approach the results are not too bad. A degree of two provides us with solid results. 
-### Feature Expansion
+##### Feature Expansion
 Another approach would be feature expansion. 
 We could create a new feature that represents an overall weather score by combining temperature, rainfall, humidity, wind speed and solar radiation, and dew point. Eventually sub-combinations like temperature and humidity or temperature and wind speed can be more beneficial. 
 We might also create a feature whether it is a working day or a weekend. 
-### Ridge or Lasso Regression 
+##### Ridge or Lasso Regression 
 Instead of simple polynomial regression exploring regularization by using Ridge or Lasso regression might also be a good idea. 
+
+### Second Model 
+[3_second_model.ipynb](/3_second_model.ipynb)
+
+#### Where does your second model fit in the fitting graph? 
+With the hyperparameter tuning we ensured that we neither have a totally over- or under-fitting model. However, the MSE values are quite high compare to what we achieved with the polynomial regression model. 
+
+#### What is the conclusion of your second model? What can be done to possibly improve it? 
+Currently, the results are not satisfying compared to our initial polynomial regression model. 
+Eventually, we should intensify our hyperparameter tuning considering the remaining parameters such as min_weight_fraction_leaf, max_features, max_leaf_nodes and ccp_alpha=0.0 which we have not specified yet. 
+Manually preprocessing our data for the decision tree might also help. We could manually introduce thresholds for splitting the data. Another than that decision trees in comparison to polynomial regression tend to struggle more with identifying feature interaction consequently we should maybe reduce the number of features used in our model and e.g. use an overall weather score instead of the multiple weather patterns. This would also prevent our tree from becoming too large. 
+

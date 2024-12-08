@@ -121,8 +121,6 @@ Performing a decision tree regressor model, we added a level of complexity due t
 
 ![alt text](image-1.png)
 
-![alt text](image-1.png)
-
 ## 4. Discussion
 
 ### Preprocessing 

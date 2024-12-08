@@ -103,6 +103,13 @@ Our second model was a decision tree. We used gridsearch to find the optimal hyp
 
 ## 3. Results
 
+### Polynomial Regression
+For our first model, polynomial regression, we iterated through different degrees of polynomial fits, finding an exorbitant mse at degree four, and our best fit at degree two. This is because the mse drastically rose onwards, especially for test mse, a clear sign of overfitting on our dataset. Earlier on, we noticed that the simpler our model, i.e. only one or two degree polynomial fit best represented our data, indicating a more complex model might not be ideal. Regardless, we decided to move to a decision tree regression model, as we felt many of our features, such as temperature, weather and season were correlated with each other and bike share count.
+
+### Decision Tree Regression
+Performing a decision tree regressor model, we added a level of complexity due to the comparison between many more features than in polynomial regression, but multiple splits in data at each decision node. First obtaining a clearly overfitted curve, we limited our max depth, before performing a grid search cross validation, which still found that the max depth 20, min sample leaf of 6, and min sample split of 24 were the best parameters. On our fitting graph, we found that the mse showed a continuous downfall until about 1500-2000 nodes in the decision tree, after which our mse for testing shot up, while training remained low—a clear sign of overfitting. Despite finding these optimal hyperparameters, our mse for both training and testing remained significantly higher, meaning either: a simpler model such as polynomial regression may be the best fit, or that we need a model such as neural networks which will consider further underlying connections between features other models cannot pick up on. 
+
+
 ## 4. Discussion
 
 ### Preprocessing 

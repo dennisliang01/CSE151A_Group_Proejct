@@ -105,10 +105,11 @@ Our second model was a decision tree. We did not scale our attributes since deci
 
 ### Polynomial Regression
 For our first model, polynomial regression, we iterated through different degrees of polynomial fits, finding an exorbitant mse at degree four, and our best fit at degree two. This is because the mse drastically rose onwards, especially for test mse, a clear sign of overfitting on our dataset. Earlier on, we noticed that the simpler our model, i.e. only one or two degree polynomial fit best represented our data, indicating a more complex model might not be ideal. Regardless, we decided to move to a decision tree regression model, as we felt many of our features, such as temperature, weather and season were correlated with each other and bike share count.
+![alt text](image.png)
 
 ### Decision Tree Regression
 Performing a decision tree regressor model, we added a level of complexity due to the comparison between many more features than in polynomial regression, but multiple splits in data at each decision node. First obtaining a clearly overfitted curve, we limited our max depth, before performing a grid search cross validation, which still found that the max depth 20, min sample leaf of 6, and min sample split of 24 were the best parameters. On our fitting graph, we found that the mse showed a continuous downfall until about 1500-2000 nodes in the decision tree, after which our mse for testing shot up, while training remained low—a clear sign of overfitting. Despite finding these optimal hyperparameters, our mse for both training and testing remained significantly higher, meaning either: a simpler model such as polynomial regression may be the best fit, or that we need a model such as neural networks which will consider further underlying connections between features other models cannot pick up on. 
-
+![alt text](image-1.png)
 
 ## 4. Discussion
 
@@ -118,7 +119,7 @@ Our chosen dataset has 8760 entries with 14 features each. It is a complete data
 ### Polynomial Regression
 Our first idea was to implement the simplest possible model in order to have a baseline to compare more complicated models to later on. Our bike sharing predictions are continues values. Thus, linear regression is the simplest way to predict the number of bikes rented. As a basic approach we just used every feature and did not create combined features etc. 
 While a linear model yielded results, we continued with increasing the degree of our models. It turned out that degree two had the best train test error ratio. Degrees higher than two showed significant signs of overfitting. Those results are illustrated in the following fitting graph. 
-![alt text](image.png)
+
 
 ### Binary Decision Trees 
 Our next approach was a binary decision tree. 
@@ -134,7 +135,7 @@ param_grid = {
 ```
 led to a max_depth of 20, min_samples_leaf of 6 and a min_samples_split of 24, with train MSE 33551.06 and test MSE: 65080.17 on a tree with 1033 nodes. We chose the number of nodes in the decision tree for measuring the complexity of our model. Models with similar many nodes are not necessarily fitted with the same parameters as the combination of parameters (e.g. max_depthmin_samples_split, min_samples_leaf) can be different. 
 For showing the fitting graph we recompute all models in order to obtain the train mse, and test mse values. As this method is not based on cross validation (compared to the grid-search library we used beforehand), but on a fixed split, it might lead to slightly different results for the optimal model complexity. However, we clearly see that around 1000 to 1500 nodes are a reasonable model complexity. Thus our model is within the area of the minimum of the test mse curve. 
-![alt text](image-1.png)
+
 The current results are not satisfying compared to our initial polynomial regression model with a train error of 711.37 and a test error of 711.43. 
 To improve our results, we might have to intensify our hyperparameter tuning considering the remaining parameters such as min_weight_fraction_leaf, max_features, max_leaf_nodes and ccp_alpha=0.0 which we have not specified yet.
 

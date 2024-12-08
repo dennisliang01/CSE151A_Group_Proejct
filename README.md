@@ -89,12 +89,53 @@ In general, having a good predictive model is important because such models can 
 
 ## 2. Methods
 ### 2.1 Data Exploration
-We levereged several pandas functions to explore our dataset. We used ```bike_data.head()``` to get a feel of what the dataset looked like. We also looked at ```bike_data.shape``` and ```bike_data.dtypes``` of the dataset to get a feel of the shape and data types we were working with. We also briefly explored the pairplot of our data to get any impressions from our data with ```sns.pairplot(bike_data, diag_kind='kde')```. We checked if there were any null values with ```bike_data.isnull().sum()```. We checked for unique values to get an idea of the range we were working with. ```for col in bike_data.columns:
-    print(col, bike_data[col].unique())```. We then used ```bike_data.describe()``` to see if the min and max values were in a reasonable range. We also looked at the correlation matrix to get an idea of possible correlations between variables with ```heat_map = sns.heatmap((bike_data.drop(columns=["Seasons", "Holiday", "Functioning Day", "Date"])).corr(), annot = True, fmt='.2', vmin=-1, vmax=1, center= 0)
-heat_map.set_title("Correlation Matrix", fontsize=16)```
+We levereged several pandas functions to explore our dataset. We used ```bike_data.head()``` to get a feel of what the dataset looked like. We also looked at ```bike_data.shape``` and ```bike_data.dtypes``` of the dataset to get a feel of the shape and data types we were working with. We also briefly explored the pairplot of our data to get any impressions from our data with 
+```
+sns.pairplot(bike_data, diag_kind='kde')
+```
+We checked if there were any null values with: 
+```
+bike_data.isnull().sum()
+```
+We checked for unique values to get an idea of the range we were working with: 
+```
+for col in bike_data.columns:
+    print(col, bike_data[col].unique())
+```
+We then used 
+```
+bike_data.describe()
+```
+to see if the min and max values were in a reasonable range. We also looked at the correlation matrix to see if there were any relationships of note with:
+```
+heat_map = sns.heatmap((bike_data.drop(columns=["Seasons", "Holiday", "Functioning Day", "Date"])).corr(), annot = True, fmt='.2', vmin=-1, vmax=1, center= 0)
+heat_map.set_title("Correlation Matrix", fontsize=16)
+```
 
 ### 2.2 Preprocessing
-We encoded the date as the date of the year. We encoded the seasons from strings to an integer from 0-3. Holidays were label encoded from a yes/no to a 1/0. All Attributes were scaled using min-max scaling. All preprocessing can be found in [1_preprocessing.ipynb](https://github.com/dennisliang01/CSE151A_Group_Project/blob/Milestone3/1_preprocessing.ipynb).
+We encoded the date as the date of the year with: 
+```
+bike_data['Date_Converted'] = pd.to_datetime(bike_data['Date'], format='%d/%m/%Y')
+bike_data['Day_of_Year'] = bike_data['Date_Converted'].dt.dayofyear
+```
+We encoded the seasons from strings to an integer from 0-3 with a label encoder: 
+```
+myle = LabelEncoder()
+bike_data['Seasons'] = myle.fit_transform(bike_data['Seasons'])
+```
+Holidays were label encoded from a holiday/noholiday to a 1/0 with 
+```
+bike_data['Holiday'] = bike_data['Holiday'].map({'Holiday': 1, 'No Holiday': 0})
+```
+Functioning day was also encoded with 
+```
+bike_data['Functioning Day'] = bike_data['Functioning Day'].map({'Yes': 1, 'No': 0})
+```
+All Attributes were scaled using min-max scaling: 
+```
+scaler = MinMaxScaler()
+```
+All preprocessing can be found in [1_preprocessing.ipynb](https://github.com/dennisliang01/CSE151A_Group_Project/blob/Milestone3/1_preprocessing.ipynb).
 
 ### 2.3 Model 1: Polynomial Regression
 Our first model we tried was a linear regression model, and then a polynomial regression model with degrees from 2-4. For reasons we will discuss later, we decided to use degree 2 for our final polynomial regression model. Our first model can be found in [2_first_model.ipynb](https://github.com/dennisliang01/CSE151A_Group_Project/blob/Milestone3/2_first_model.ipynb).

@@ -123,11 +123,11 @@ We encoded the seasons from strings to an integer from 0-3 with a label encoder:
 myle = LabelEncoder()
 bike_data['Seasons'] = myle.fit_transform(bike_data['Seasons'])
 ```
-Holidays were label encoded from a holiday/noholiday to a 1/0 with 
+Holidays were label encoded from a holiday/noholiday to a 1/0 with: 
 ```
 bike_data['Holiday'] = bike_data['Holiday'].map({'Holiday': 1, 'No Holiday': 0})
 ```
-Functioning day was also encoded with 
+Functioning day was also encoded with: 
 ```
 bike_data['Functioning Day'] = bike_data['Functioning Day'].map({'Yes': 1, 'No': 0})
 ```

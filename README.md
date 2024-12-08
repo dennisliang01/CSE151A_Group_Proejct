@@ -1,4 +1,4 @@
-# CSE151A_Group_Project
+# Seoul Bike Rental Machine Learning Project
 
 # Milestone 5: final report
 

@@ -166,17 +166,17 @@ Performing a decision tree regressor model, we added a level of complexity due t
 
 ## 4. Discussion
 
-### Preprocessing 
-Our chosen dataset has 8760 entries with 14 features each. It is a complete dataset which did not include any abnormal looking data. Thus, we did not need to sanitize but only to encode data. We had to encode dates, seasons, and holiday as well as functioning day. The dates were saved in a String format of DD/MM/YYYY which we converted to the day of the year format. This enabled us to keep the sequentially. However, we lost the option to derive the day of the week.  Seasons were as well saved as strings, so we decided to apply label encoding. As holiday and functioning day are in a yes format, we label encoded this boolean data. The rest of the features namely Hour, Temperature, Humidity, Wind Speed, Visibility, Dew Point Temperature, Solar Radiation, Rainfall, Snowfall are already in numerical format. To be able to compare attributes against each other we scaled them using min-max-scaling. 
+### 4.1 Data exploration and Preprocessing 
+Our chosen dataset has 8760 entries with 14 features each. It is a complete dataset which did not include any abnormal looking data. Thus, we did not need to sanitize but only to encode data. We had to encode dates, seasons, and holiday as well as functioning day. The dates were saved in a String format of DD/MM/YYYY which we converted to the day of the year format. This enabled us to keep the sequentially. However, we lost the option to derive the day of the week. Seasons were as well saved as strings, so we decided to apply label encoding. As holiday and functioning day are in a yes format, we label encoded this boolean data. The rest of the features namely Hour, Temperature, Humidity, Wind Speed, Visibility, Dew Point Temperature, Solar Radiation, Rainfall, Snowfall are already in numerical format. To be able to compare attributes against each other we scaled them using min-max-scaling. 
 
-### Polynomial Regression
+### 4.2 Polynomial Regression
 Our first idea was to implement the simplest possible model in order to have a baseline to compare more complicated models to later on. Our bike sharing predictions are continues values. Thus, linear regression is the simplest way to predict the number of bikes rented. As a basic approach we just used every feature and did not create combined features etc. 
 While a linear model yielded results, we continued with increasing the degree of our models. It turned out that degree two had the best train test error ratio. Degrees higher than two showed significant signs of overfitting. Those results are illustrated in the following fitting graph. 
 
 
-### Binary Decision Trees 
+### 4.3 Binary Decision Trees 
 Our next approach was a binary decision tree. 
-As a first model with default settings let to an extremely complex overfitting model with 13347, which is a common behaviour according to the documentation, we started tuning hyperparameters. As the max_depth is a simple parameter to control the size, and therefore complexity of the decision tree. Within the tried range of 1 to 20 a depth of 12 leading to a tree with 2865 nodes turned out to be best with a train MSE of 27945.93 and a test MSE of 71971.45. As this is still bey far higher than our errors with the simple polynomial regression model we continued our search. 
+As a first model with default settings let to an extremely complex overfitting model with 13347, which is a common behaviour according to the documentation, we started tuning hyperparameters. As the max_depth is a simple parameter to control the size, and therefore complexity of the decision tree. Within the tried range of 1 to 20 a depth of 12 leading to a tree with 2865 nodes turned out to be best with a train MSE of 27945.93 and a test MSE of 71971.45. As this is still by far higher than our errors with the simple polynomial regression model we continued our search. 
 Our grid search with the following parameters 
 ```
 param_grid = {
@@ -189,6 +189,11 @@ param_grid = {
 led to a max_depth of 20, min_samples_leaf of 6 and a min_samples_split of 24, with train MSE 33551.06 and test MSE: 65080.17 on a tree with 1033 nodes. We chose the number of nodes in the decision tree for measuring the complexity of our model. Models with similar many nodes are not necessarily fitted with the same parameters as the combination of parameters (e.g. max_depthmin_samples_split, min_samples_leaf) can be different. 
 For showing the fitting graph we recompute all models in order to obtain the train mse, and test mse values. As this method is not based on cross validation (compared to the grid-search library we used beforehand), but on a fixed split, it might lead to slightly different results for the optimal model complexity. However, we clearly see that around 1000 to 1500 nodes are a reasonable model complexity. Thus our model is within the area of the minimum of the test mse curve. 
 
+This is the plot of our decision tree, which makes clear that it is  a rather complex model. 
+![alt text](image-2.png)
+For a better insight we include a plot of only the first three layers in the following. 
+![alt text](image-3.png)
+
 The current results are not satisfying compared to our initial polynomial regression model with a train error of 711.37 and a test error of 711.43. 
 To improve our results, we might have to intensify our hyperparameter tuning considering the remaining parameters such as min_weight_fraction_leaf, max_features, max_leaf_nodes and ccp_alpha=0.0 which we have not specified yet.
 
@@ -197,8 +202,8 @@ Feature expansion is likely to yield better results for our models. Potential op
 
 
 ## 5. Conclusion
-Overall, our project showed that predicting bike rentals using weather and holidy data is feasible with polynomial regression providing the best results among the models we implemented. While decision trees offered insights into data splits, they underperformed compared to polynomial regression and also increased the complexity of the model.
+Overall, our project showed that predicting bike rentals using weather and holiday data is feasible with polynomial regression providing the best results among the models we implemented. While decision trees offered insights into data splits, they underperformed compared to polynomial regression and also increased the complexity of the model.
 
-In the future, we would like to introduce new features such as a composite weather score to make it easier to predict bike rentals and improve our model perofmrance. We would also like to explore new models such as neural networks to see if they can improve our results. Our Hyperparameter tuning was limited by the time we had to work on the project, so we would like to explore more hyperparameter tuning in the future. Due to the exhaustive nature of hyperparameter tuninng, we also hope to utilize more computing resouces such as the San Diego Supercomputing Center.
+In the future, we would like to introduce new features such as a composite weather score to make it easier to predict bike rentals and improve our model performance. We would also like to explore new models such as neural networks to see if they can improve our results. Our Hyperparameter tuning was limited by the time we had to work on the project, so we would like to explore more hyperparameter tuning in the future. Due to the exhaustive nature of hyperparameter tuning, we also hope to utilize more computing resources such as the San Diego Supercomputing Center.
 
 Finally, we believe having more data would also help improve the accuracy of our model. During our initial project research, we found there were other bike sharing datasets from other countries around the world. The only challenge with incorporating multiple datasets is to ensure that the data is consistent and that the features are comparable.

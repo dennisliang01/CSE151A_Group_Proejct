@@ -106,4 +106,9 @@ Our second model was a decision tree. We used gridsearch to find the optimal hyp
 ## 4. Discussion
 
 ## 5. Conclusion
+Overall, our project showed that predicting bike rentals using weather and holidy data is feasible with polynomial regression providing the best results among the models we implemented. While decision trees offered insights into data splits, they underperformed compared to polynomial regression and also increased the complexity of the model.
+
+In the future, we would like to introduce new features such as a composite weather score to make it easier to predict bike rentals and improve our model perofmrance. We would also like to explore new models such as neural networks to see if they can improve our results. Our Hyperparameter tuning was limited by the time we had to work on the project, so we would like to explore more hyperparameter tuning in the future. Due to the exhaustive nature of hyperparameter tuninng, we also hope to utilize more computing resouces such as the San Diego Supercomputing Center.
+
+Finally, we believe having more data would also help improve the accuracy of our model. During our initial project research, we found there were other bike sharing datasets from other countries around the world. The only challenge with incorporating multiple datasets is to ensure that the data is consistent and that the features are comparable.
 

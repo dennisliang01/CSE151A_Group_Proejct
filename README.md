@@ -89,7 +89,9 @@ In general, having a good predictive model is important because such models can 
 
 ## 2. Methods
 ### 2.1 Data Exploration
-During our initial exploration of the data we found that there was no abnormal data that had to be replaced or dropped. However, we discovered that the date, seasons, and holiday columns needed to be encoded.
+We levereged several pandas functions to explore our dataset. We used ```bike_data.head()``` to get a feel of what the dataset looked like. We also looked at ```bike_data.shape``` and ```bike_data.dtypes``` of the dataset to get a feel of the shape and data types we were working with. We also briefly explored the pairplot of our data to get any impressions from our data with ```sns.pairplot(bike_data, diag_kind='kde')```. We checked if there were any null values with ```bike_data.isnull().sum()```. We checked for unique values to get an idea of the range we were working with. ```for col in bike_data.columns:
+    print(col, bike_data[col].unique())```. We then used ```bike_data.describe()``` to see if the min and max values were in a reasonable range. We also looked at the correlation matrix to get an idea of possible correlations between variables with ```heat_map = sns.heatmap((bike_data.drop(columns=["Seasons", "Holiday", "Functioning Day", "Date"])).corr(), annot = True, fmt='.2', vmin=-1, vmax=1, center= 0)
+heat_map.set_title("Correlation Matrix", fontsize=16)```
 
 ### 2.2 Preprocessing
 We encoded the date as the date of the year. We encoded the seasons from strings to an integer from 0-3. Holidays were label encoded from a yes/no to a 1/0. All Attributes were scaled using min-max scaling. All preprocessing can be found in [1_preprocessing.ipynb](https://github.com/dennisliang01/CSE151A_Group_Project/blob/Milestone3/1_preprocessing.ipynb).
@@ -103,11 +105,18 @@ Our second model was a decision tree. We did not scale our attributes since deci
 
 ## 3. Results
 
-### Polynomial Regression
+### 3.1 Data Exploration
+When first exploring our data, we found that we had 14 features and 8760 observations in our dataset. Looking more, we found no null data, and multiple data types, some of which would need to be encoded. Our correlation matrix illustrated a higher correlation between temperatuure and time of day with the number of bikes rented.
+
+### 3.2 Preprocessing
+First, we encoded our day of year from a data with slashes, to integer values between 1 and 365, as well as our seasons from objects [Winter, Spring, Summer Autumn] to the numerical labels, [3, 1, 2, 0] respectively. Finally we encoded the [Yes,No] values of the Functioning Day column and the [Holiday, No Holiday] values of the Holiday column to both [1, 0] respectively.
+
+### 3.3 Model 1: Polynomial Regression
 For our first model, polynomial regression, we iterated through different degrees of polynomial fits, finding an exorbitant mse at degree four, and our best fit at degree two. This is because the mse drastically rose onwards, especially for test mse, a clear sign of overfitting on our dataset. Earlier on, we noticed that the simpler our model, i.e. only one or two degree polynomial fit best represented our data, indicating a more complex model might not be ideal. Regardless, we decided to move to a decision tree regression model, as we felt many of our features, such as temperature, weather and season were correlated with each other and bike share count.
+
 ![alt text](image.png)
 
-### Decision Tree Regression
+### 3.4 Model 2: Decision Tree Regression
 Performing a decision tree regressor model, we added a level of complexity due to the comparison between many more features than in polynomial regression, but multiple splits in data at each decision node. First obtaining a clearly overfitted curve, we limited our max depth, before performing a grid search cross validation, which still found that the max depth 20, min sample leaf of 6, and min sample split of 24 were the best parameters. On our fitting graph, we found that the mse showed a continuous downfall until about 1500-2000 nodes in the decision tree, after which our mse for testing shot up, while training remained low—a clear sign of overfitting. Despite finding these optimal hyperparameters, our mse for both training and testing remained significantly higher, meaning either: a simpler model such as polynomial regression may be the best fit, or that we need a model such as neural networks which will consider further underlying connections between features other models cannot pick up on. 
 
 ![alt text](image-1.png)

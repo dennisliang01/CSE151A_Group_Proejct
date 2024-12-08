@@ -1,8 +1,5 @@
 # CSE151A_Group_Project
 
-Notebook Link: [https://colab.research.google.com/drive/1748EV2Sbf0I69aJNW2KFquCi2FpQOLMA?usp=sharing](https://colab.research.google.com/drive/1rqXG1tEI_nTDLgZxeTXwmq--Nhsp5cPs?usp=sharing)
-
-
 # Milestone 5: final report
 
 ## 1. Introduction

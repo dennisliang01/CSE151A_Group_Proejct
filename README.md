@@ -2,6 +2,9 @@
 
 
 ## 1. Introduction
+For our project, we decided to use a Seoul bike rental dataset from the UC Irvine Machine Learning Repository. This dataset contains information about public bike rentals in Seoul from 2017 to 2018, along with weather and holiday information for each day within that timeframe. We chose this dataset because we thought trying to predict bike rental numbers using weather and holiday information was interesting, and we were curious to see if our assumptions–that bike rentals would be higher on days with good weather and on weekends or holidays–were correct. Plus, a few of us are bike enthusiasts, so this dataset seemed like a cool way to incorporate our interests into the project. 
+
+In general, having a good predictive model is important because such models can be incredibly useful. At UCSD, for example, machine learning is being applied to all sorts of things, from signal recovery to analyzing bird calls. Additionally, a bad predictive model isn't just a nuisance, but can actually cause significant harm: as we've mentioned before in class, if a model incorrectly predicts that someone doesn't have cancer when they actually do, that mistake can cost the person their life. 
 
 ## 2. Methods
 ### 2.1 Data Exploration

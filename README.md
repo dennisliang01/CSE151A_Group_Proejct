@@ -224,7 +224,7 @@ Contribution: Contributed to coding and reviewing the writeup for each milestone
 Name: Isabel Marie Pfannmueller  
 Contribution: Contribution to weekly coding meetings; Contact to TAs before submitting the second milestone, refactoring of project structure, writeups and explanations for milestones, code cleanup, discussion section of final report, feedback on others code and final report contribution.
 
-Rylen Sabhlok:  
+Name: Rylen Sabhlok  
 Contribution: Discussion and collaboration on weekly meetings for each milestone. Wrote results section for final report, gave advise and feedback on code, helped plan project and decide on models and milestone summaries/descriptions.
 
 

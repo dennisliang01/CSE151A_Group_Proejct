@@ -123,11 +123,11 @@ We encoded the seasons from strings to an integer from 0-3 with a label encoder:
 myle = LabelEncoder()
 bike_data['Seasons'] = myle.fit_transform(bike_data['Seasons'])
 ```
-Holidays were label encoded from a holiday/noholiday to a 1/0 with 
+Holidays were label encoded from a holiday/noholiday to a 1/0 with: 
 ```
 bike_data['Holiday'] = bike_data['Holiday'].map({'Holiday': 1, 'No Holiday': 0})
 ```
-Functioning day was also encoded with 
+Functioning day was also encoded with: 
 ```
 bike_data['Functioning Day'] = bike_data['Functioning Day'].map({'Yes': 1, 'No': 0})
 ```
@@ -207,3 +207,25 @@ Overall, our project showed that predicting bike rentals using weather and holid
 In the future, we would like to introduce new features such as a composite weather score to make it easier to predict bike rentals and improve our model performance. We would also like to explore new models such as neural networks to see if they can improve our results. Our Hyperparameter tuning was limited by the time we had to work on the project, so we would like to explore more hyperparameter tuning in the future. Due to the exhaustive nature of hyperparameter tuning, we also hope to utilize more computing resources such as the San Diego Supercomputing Center.
 
 Finally, we believe having more data would also help improve the accuracy of our model. During our initial project research, we found there were other bike sharing datasets from other countries around the world. The only challenge with incorporating multiple datasets is to ensure that the data is consistent and that the features are comparable.
+
+## 6. Statement of Collaboration
+
+Roles: We did have have clearly defined roles. Everyone worked as a team and contributed to the project. We held each other responsible and had interchangable roles.
+
+Name: Ryan Do  
+Contribution: Helped organize meetings. Discussed and helped code milestones. Wrote the methods section of final report. Gave feedback on code and other member's contribution to final report.
+
+Name: April Hsu  
+Contribution: Took part and contributed in group meetings when working on milestones 1-4, wrote intro for milestone 5.
+
+Name: Dennis Liang  
+Contribution: Contributed to coding and reviewing the writeup for each milestone. Helped organize meetings and define goals. Provided feedback on others code and final report contribution. Wrote conclusion section for final report.
+
+Name: Isabel Marie Pfannmueller  
+Contribution: Contribution to weekly coding meetings; Contact to TAs before submitting the second milestone, refactoring of project structure, writeups and explanations for milestones, code cleanup, discussion section of final report, feedback on others code and final report contribution.
+
+Rylen Sabhlok:  
+Contribution: Discussion and collaboration on weekly meetings for each milestone. Wrote results section for final report, gave advise and feedback on code, helped plan project and decide on models and milestone summaries/descriptions.
+
+
+

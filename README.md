@@ -89,7 +89,9 @@ In general, having a good predictive model is important because such models can 
 
 ## 2. Methods
 ### 2.1 Data Exploration
-During our initial exploration of the data we found that there was no abnormal data that had to be replaced or dropped. However, we discovered that the date, seasons, and holiday columns needed to be encoded.
+We levereged several pandas functions to explore our dataset. We used ```bike_data.head()``` to get a feel of what the dataset looked like. We also looked at ```bike_data.shape``` and ```bike_data.dtypes``` of the dataset to get a feel of the shape and data types we were working with. We also briefly explored the pairplot of our data to get any impressions from our data with ```sns.pairplot(bike_data, diag_kind='kde')```. We checked if there were any null values with ```bike_data.isnull().sum()```. We checked for unique values to get an idea of the range we were working with. ```for col in bike_data.columns:
+    print(col, bike_data[col].unique())```. We then used ```bike_data.describe()``` to see if the min and max values were in a reasonable range. We also looked at the correlation matrix to get an idea of possible correlations between variables with ```heat_map = sns.heatmap((bike_data.drop(columns=["Seasons", "Holiday", "Functioning Day", "Date"])).corr(), annot = True, fmt='.2', vmin=-1, vmax=1, center= 0)
+heat_map.set_title("Correlation Matrix", fontsize=16)```
 
 ### 2.2 Preprocessing
 We encoded the date as the date of the year. We encoded the seasons from strings to an integer from 0-3. Holidays were label encoded from a yes/no to a 1/0. All Attributes were scaled using min-max scaling. All preprocessing can be found in [1_preprocessing.ipynb](https://github.com/dennisliang01/CSE151A_Group_Project/blob/Milestone3/1_preprocessing.ipynb).

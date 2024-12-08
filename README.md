@@ -70,9 +70,11 @@ Our second model was a decision tree. We did not scale our attributes since deci
 ## 3. Results
 
 ### 3.1 Data Exploration
-When first exploring our data, we found that we had 14 features and 8760 observations in our dataset. Looking more, we found no null data, and multiple data types, some of which would need to be encoded. Our correlation matrix illustrated a higher correlation between temperatuure and time of day with the number of bikes rented.
+When first exploring our data, we found that we had 14 features and 8760 observations in our dataset. Looking more, we found no null data, and multiple data types, some of which would need to be encoded. Our correlation matrix illustrated a higher correlation between temperature and time of day with the number of bikes rented.
 
 ![alt text](Pairplots.png)
+
+![alt text](Correlation_Matrix.png)
 
 ### 3.2 Preprocessing
 First, we encoded our day of year from a data with slashes, to integer values between 1 and 365, as well as our seasons from objects [Winter, Spring, Summer Autumn] to the numerical labels, [3, 1, 2, 0] respectively. Finally we encoded the [Yes,No] values of the Functioning Day column and the [Holiday, No Holiday] values of the Holiday column to both [1, 0] respectively.

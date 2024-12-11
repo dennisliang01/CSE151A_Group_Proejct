@@ -124,6 +124,10 @@ For a better insight we include a plot of only the first three layers in the fol
 ![alt text](image-3.png)  
 *Figure 6: First three layers of the decision tree*
 
+After the feedback on milestone 4 we decided to broaden our hyperparamtersearch to address the overfitting issue. With the following parameter grid  
+
+our optimal model had max_depth 12, min_samples_leaf 3 and min_samples_split 40 leading to a train MSE: 45513.53 and a test MSE: 67084.55. While this is still not a good fit at least the complexity of the model reduced to 545 nodes. 
+
 The current results are not satisfying compared to our initial polynomial regression model with a train error of 711.37 and a test error of 711.43. 
 To improve our results, we might have to intensify our hyperparameter tuning by considering the remaining parameters such as min_weight_fraction_leaf, max_features, max_leaf_nodes and ccp_alpha=0.0 which we have not specified yet.
 
@@ -202,6 +206,7 @@ We adjusted the feature ranges until we had best results that were not at the bo
 
 Our second model can be found in [3_second_model.ipynb](/3_second_model.ipynb).
 
+After the feedback on milestone 4 we reran our hyperparameter search with focus on a smaller depth to solve our overfitting problem.
 
 ## Conclusion 
 
@@ -234,7 +239,7 @@ With the hyperparameter tuning we ensured that we neither have a totally over- o
 Currently, the results are not satisfying compared to our initial polynomial regression model. 
 Eventually, we should intensify our hyperparameter tuning considering the remaining parameters such as min_weight_fraction_leaf, max_features, max_leaf_nodes and ccp_alpha=0.0 which we have not specified yet. 
 Manually preprocessing our data for the decision tree might also help. We could manually introduce thresholds for splitting the data. Another than that decision trees in comparison to polynomial regression tend to struggle more with identifying feature interaction consequently we should maybe reduce the number of features used in our model and e.g. use an overall weather score instead of the multiple weather patterns. This would also prevent our tree from becoming too large. 
-
+In our edit after the feedback we did adapt the parameter range especially regarding max. depth. We managed to get less complex models. However, the result is still not a good fit and shows overfitting. 
 
 
 

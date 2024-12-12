@@ -61,7 +61,7 @@ All preprocessing can be found in [1_preprocessing.ipynb](https://github.com/den
 Our first model we tried was a linear regression model, and then a polynomial regression model with degrees from 2-4. For reasons we will discuss later, we decided to use degree 2 for our final polynomial regression model. Our first model can be found in [2_first_model.ipynb](https://github.com/dennisliang01/CSE151A_Group_Project/blob/Milestone3/2_first_model.ipynb).
 
 ### 2.4 Model 2: Decision Trees
-Our second model was a decision tree. We did not scale our attributes since decisions trees are not sensitive to outliers. We used gridsearch to find the optimal hyperparameters. The optimal parameters used in our final model were: max_depth=20, min_samples_leaf=6, min_samples_split=24. Keep in mind we did not do an entirely exhaustive search, so there are other parameters that were not tuned. Our second model can be found in [3_second_model.ipynb](https://github.com/dennisliang01/CSE151A_Group_Project/blob/Milestone4/3_second_model.ipynb).
+Our second model was a decision tree. We did not scale our attributes since decisions trees are not sensitive to outliers. We used gridsearch to find the optimal hyperparameters. The optimal parameters used in our final model were: max_depth=12, min_samples_leaf=3, min_samples_split=40. Keep in mind we did not do an entirely exhaustive search, so there are other parameters that were not tuned. Our second model can be found in [3_second_model.ipynb](https://github.com/dennisliang01/CSE151A_Group_Project/blob/Milestone4/3_second_model.ipynb).
 
 
 ## 3. Results

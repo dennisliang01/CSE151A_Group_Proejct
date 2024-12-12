@@ -127,8 +127,8 @@ For a better insight, we include a plot of only the first three layers in the fo
 After the feedback on milestone 4, we decided to broaden our hyperparameter search to address the overfitting issue. With the following parameter grid
 ```
 param_grid = {
-    'max_depth': [1, 2, 3, 4, 5],
-    'min_samples_split': [2, 10, 18, 16, 24, 30],
+    'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20],
+    'min_samples_split': [4, 6, 8, 10, 16, 18, 24, 30, 32, 34, 36, 40, 44, 48],
     'min_samples_leaf': [10, 12, 14, 16, 18],
     'criterion': ['squared_error']
 }

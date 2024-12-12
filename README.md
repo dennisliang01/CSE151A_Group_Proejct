@@ -80,13 +80,13 @@ When first exploring our data, we found that we had 14 features and 8760 observa
 First, we encoded our day of the year from a data with slashes to integer values between 1 and 365, as well as our seasons from objects [Winter, Spring, Summer Autumn] to the numerical labels, [3, 1, 2, 0] respectively. Finally, we encoded the [Yes,No] values of the Functioning Day column and the [Holiday, No Holiday] values of the Holiday column to both [1, 0] respectively.
 
 ### 3.3 Model 1: Polynomial Regression
-For our first model, polynomial regression, we iterated through different degrees of polynomial fits, finding an exorbitant mse at degree four, and our best fit at degree two. This is because the mse drastically rose onwards, especially for test mse, a clear sign of overfitting on our dataset. Earlier on, we noticed that the simpler our model, i.e. only one or two-degree polynomial fit best represented our data, indicating a more complex model might not be ideal. 
+For our first model, polynomial regression, we iterated through different degrees of polynomial fits, finding an exorbitant MSE at degree four, and our best fit at degree two. This is because the MSE drastically rose onwards, especially for test MSE, a clear sign of overfitting on our dataset. Earlier on, we noticed that the simpler our model, i.e. only one or two-degree polynomial fit best represented our data, indicating a more complex model might not be ideal. 
 
 ![alt text](image.png "Fitting Graph for Polynomial Regression")  
 *Figure 3: Fitting Graph for Polynomial Regression*
 
 ### 3.4 Model 2: Decision Tree Regression
-Performing a decision tree regressor model, we added a level of complexity due to the comparison between many more features than in polynomial regression and multiple splits in data at each decision node. First obtaining a clearly overfitted curve, we limited our max depth, before performing a grid search cross-validation, which found that the max depth of 20, min sample leaf of 6, and min sample split of 24 were the best parameters. On our fitting graph, we found that the mse showed a continuous downfall until about 1500-2000 nodes in the decision tree, after which our mse for testing shot up, while training remained low—a clear sign of overfitting. 
+Performing a decision tree regressor model, we added a level of complexity due to the comparison between many more features than in polynomial regression and multiple splits in data at each decision node. First obtaining a clearly overfitted curve, we limited our max depth, before performing a grid search cross-validation, which found that the max depth of 20, min sample leaf of 6, and min sample split of 24 were the best parameters. On our fitting graph, we found that the MSE showed a continuous downfall until about 1500-2000 nodes in the decision tree, after which our MSE for testing shot up, while training remained low—a clear sign of overfitting. After receiving our Milestone 4 feedback, we reduced our range of depth to 1-5, to reduce the possibility of overfitting in our model. Doing this, we received an optimal MSE of 45513.53 and 67084.55 for train and test respectively, which are definitely less overfit considering the difference being far smaller, however, this fits our data even less so than before.
 
 ![alt text](image-1.png "Fitting Graph for Decision Trees")  
 *Figure 4: Fitting Graph for Decision Trees*
@@ -114,7 +114,7 @@ param_grid = {
 }
 ```
 led to a max_depth of 20, min_samples_leaf of 6, and a min_samples_split of 24, with train MSE 33551.06 and test MSE: 65080.17 on a tree with 1033 nodes. We chose the number of nodes in the decision tree for measuring the complexity of our model. Models with similar many nodes are not necessarily fitted with the same parameters as the combination of parameters (e.g. max_depthmin_samples_split, min_samples_leaf) can be different. 
-For showing the fitting graph (figure 4) we recompute all models in order to obtain the train mse, and test mse values. As this method is not based on cross-validation (compared to the grid-search library we used beforehand), but on a fixed split, it might lead to slightly different results for the optimal model complexity. However, we see that around 1000 to 1500 nodes are a reasonable model complexity. Thus, our model is within the area of the minimum of the test mse curve. 
+For showing the fitting graph (figure 4) we recompute all models in order to obtain the train MSE and test MSE values. As this method is not based on cross-validation (compared to the grid-search library we used beforehand), but on a fixed split, it might lead to slightly different results for the optimal model complexity. However, we see that around 1000 to 1500 nodes are a reasonable model complexity. Thus, our model is within the area of the minimum of the test MSE curve. 
 
 This is the plot of our decision tree, which makes clear that it is  a rather complex model. 
 ![alt text](image-2.png)  
@@ -124,8 +124,15 @@ For a better insight, we include a plot of only the first three layers in the fo
 ![alt text](image-3.png)  
 *Figure 6: First three layers of the decision tree*
 
-After the feedback on milestone 4, we decided to broaden our hyperparameter search to address the overfitting issue. With the following parameter grid  
-
+After the feedback on milestone 4, we decided to broaden our hyperparameter search to address the overfitting issue. With the following parameter grid
+```
+param_grid = {
+    'max_depth': [1, 2, 3, 4, 5],
+    'min_samples_split': [2, 10, 18, 16, 24, 30],
+    'min_samples_leaf': [10, 12, 14, 16, 18],
+    'criterion': ['squared_error']
+}
+```
 our optimal model had max_depth 12, min_samples_leaf 3, and min_samples_split 40 leading to a train MSE: 45513.53 and a test MSE: 67084.55. While this is still not a good fit at least the complexity of the model reduced to 545 nodes. 
 
 The current results are not satisfying compared to our initial polynomial regression model with a train error of 711.37 and a test error of 711.43. 

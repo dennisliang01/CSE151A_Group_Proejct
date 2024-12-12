@@ -86,7 +86,7 @@ For our first model, polynomial regression, we iterated through different degree
 *Figure 3: Fitting Graph for Polynomial Regression*
 
 ### 3.4 Model 2: Decision Tree Regression
-Performing a decision tree regressor model, we added a level of complexity due to the comparison between many more features than in polynomial regression and multiple splits in data at each decision node. First obtaining a clearly overfitted curve, we limited our max depth, before performing a grid search cross-validation, which found that the max depth of 20, min sample leaf of 6, and min sample split of 24 were the best parameters. On our fitting graph, we found that the MSE showed a continuous downfall until about 1500-2000 nodes in the decision tree, after which our MSE for testing shot up, while training remained low—a clear sign of overfitting. After receiving our Milestone 4 feedback, we reduced our range of depth to 1-5, to reduce the possibility of overfitting in our model. Doing this, we received an optimal MSE of 45513.53 and 67084.55 for train and test respectively, which are definitely less overfit considering the difference being far smaller, however, this fits our data even less so than before.
+Performing a decision tree regressor model, we added a level of complexity due to the comparison between many more features than in polynomial regression and multiple splits in data at each decision node. First obtaining a clearly overfitted curve, we limited our max depth, before performing a grid search cross-validation, which found that the max depth of 20, min sample leaf of 6, and min sample split of 24 were the best parameters. On our fitting graph, we found that the MSE showed a continuous downfall until about 1500-2000 nodes in the decision tree, after which our MSE for testing shot up, while training remained low—a clear sign of overfitting. After receiving our Milestone 4 feedback, we extended the lower bound of our max_depth, to reduce the possibility of overfitting in our model. Doing this, we received an optimal MSE of 45513.53 and 67084.55 for train and test respectively, which are definitely less overfit considering the difference being far smaller, however, this fits our data even less so than before.
 
 ![alt text](image-1.png "Fitting Graph for Decision Trees")  
 *Figure 4: Fitting Graph for Decision Trees*
@@ -127,9 +127,9 @@ For a better insight, we include a plot of only the first three layers in the fo
 After the feedback on milestone 4, we decided to broaden our hyperparameter search to address the overfitting issue. With the following parameter grid
 ```
 param_grid = {
-    'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20],
-    'min_samples_split': [4, 6, 8, 10, 16, 18, 24, 30, 32, 34, 36, 40, 44, 48],
-    'min_samples_leaf': [10, 12, 14, 16, 18],
+    'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 14, 26, 18, 20],
+    'min_samples_split': [4, 6, 8, 10, 18, 16, 24, 30, 32, 34, 36, 40, 44, 48],
+    'min_samples_leaf': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16],
     'criterion': ['squared_error']
 }
 ```
